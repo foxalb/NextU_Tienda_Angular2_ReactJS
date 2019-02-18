@@ -1,5 +1,5 @@
 <div class="login"> 
-  <div class="col-md-6 col-sm-s12 form-container">
+  <div class="col-xs-6 form-container animated fadeIn slow">
     <form [formGroup]="loginForm" (ngSubmit)="checkLogin()">
       <h4 class="text-center white-text">Inicia Sesión</h4>
       <div class="form-group ">
@@ -16,7 +16,7 @@
         <div class="mensaje"> <!--Mostrar el mensaje de error de inicio de sesión-->
           {{mensaje}}
         </div>
-        <!--Deshabilitar el botón de enviar si los datos ingresados en el formulario son invá<lidos></lidos>-->
+        <!--Deshabilitar el botón de enviar si los datos ingresados en el formulario son inválidos-->
         <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid" >Ingresar</button>
       </div>
     </form>

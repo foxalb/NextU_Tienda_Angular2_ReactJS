@@ -1,23 +1,23 @@
 @import url('./assets/css/bootstrap.min.css');
 @import url('./assets/css/owl.carousel.min.css');
-@import url('./assets/css/owl.theme.default.min.css');
-/* fallback */ 
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./assets/fonts/material-icons.woff2) format('woff2');
-}
+@import url('./assets/css/owl.theme.default.min.css'); 
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Poppins');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-/* latin */
-@font-face {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Poppins Regular'), local('Poppins-Regular'), url(./assets/fonts/poppins.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+.btn-secondary {
+	border: solid 1px orange;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 5px !important;
+	line-height: 10px;
 }
-
+.btn-secondary:hover, .btn-secondary:focus{
+	border: solid 1px black;
+}
+.disabled,.disabled .btn, .disabled input{
+  opacity: 0.65;
+  cursor: not-allowed;
+}
 
 .material-icons {
   font-family: 'Material Icons';
@@ -35,8 +35,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*@import url('https://fonts.googleapis.com/css?family=Poppins');*/
-
 html, body{
   font-family:  'Poppins', sans-serif;
   font-size: 14px;
@@ -51,14 +49,7 @@ a {
 .cursor{
   cursor: pointer;
 }
-/*.overlay{
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  opacity: 0.75;
-  z-index:-10
-  }*/
+
 .login{
   background-image: url('./assets/img/login-fondo.jpg');
   background-position: center center;
@@ -68,7 +59,7 @@ a {
   height: 100%;
   position: fixed;
   z-index: 0;
-  background-color: black;
+  background-color: #636161;
   background-blend-mode: multiply;
   }
 .login .form-container{
@@ -129,7 +120,10 @@ form .ng-invalid ~ span.error, form .mensaje {
 .tienda li img{
   padding: 5px;
 }
-
+.btn.btn-danger.btn-sm{
+  margin-top: 0;
+  margin-bottom:0
+}
 .btn.bottom{
   position: absolute;
   right: 30px;
@@ -157,6 +151,44 @@ form .ng-invalid ~ span.error, form .mensaje {
 	padding: 4px;
 	color: white;
 }
+.box h4.badge {
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+	right: 10px;
+	background: #b46314b3;
+	padding: 4px;
+	color: white;
+}
+.box h4.badge {
+	position: absolute;
+	top: 0;
+	background: #b46314b3;
+	color: white;
+	border-radius: 0;
+	bottom: auto;
+	left: 0;
+	right: auto;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+.box h4.badge {
+	position: absolute;
+	top: 0;
+	background: #b46314b3;
+	color: white;
+	border-radius: 0;
+	bottom: auto;
+	left: 0;
+	right: auto;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.box h4.badge b {
+	position: relative;
+	top: -6px;
+}
 
 .box.footer{
   background-color: white;
@@ -171,10 +203,18 @@ form .ng-invalid ~ span.error, form .mensaje {
   transition: all ease 0.3s;
 }
 
-
-.box .titulo{
-  border-bottom:solid 2px lightgray;
-  margin-bottom:15px
+.flex{
+  display:flex;
+  flex-wrap: wrap;
+}
+.flex img{
+    display: flex;
+    flex: 1;
+}
+.box .titulo {
+	border-bottom: solid 2px lightgray;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
 }
 .informacion {
 	background: #ededed;
@@ -183,14 +223,24 @@ form .ng-invalid ~ span.error, form .mensaje {
 	display: table;
 	width: 100%;
 }
+.badge.carrito {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	background: #b46314b3;
+}
+.text-shadow{
+  text-shadow: 0 1px 2px black
+}
 .tienda li .btn, .tienda li input{
   font-size: 12px;
   height: 30px
 }
-.barra-superior{
-  background: #802314;
-  color: white;
-  z-index: 20
+.barra-superior {
+	background: #802314;
+	color: white;
+	z-index: 20;
+	height: 75px;
 }
 .barra-superior a{
   color: #e4e4e4;
@@ -199,10 +249,39 @@ form .ng-invalid ~ span.error, form .mensaje {
 .navbar {
 	margin-bottom: 0;
 }
+.nav > li {
+	position: relative;
+	display: inline-block;
+}
+.navbar-nav {
+	margin: 7.5px -15px;
+}
+.navbar-header{
+  display: inline-block;
+
+}
+.navbar-brand {
+	float: left;
+	height: 50px;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.navbar-brand p {
+	font-family: 'Berkshire Swash', cursive;
+	top: -5px;
+	position: relative;
+}
 
 .navbar-nav > li > a {
 	padding: 0;
 	margin: 0 15px;
+	text-align: center;
+}
+.navbar-nav > li > a.active {
+	border-bottom: solid 2px;
 }
 .nav > li > a:focus, .nav > li > a:hover {
 	text-decoration: none;
@@ -211,7 +290,7 @@ form .ng-invalid ~ span.error, form .mensaje {
 }
 .item-counter {
 	position: absolute;
-	background: darkblue;
+	background: #c82f23;
 	border-radius: 50%;
 	padding: 2px;
 	font-size: 9px;
@@ -315,6 +394,27 @@ li.list-group-item .footer {
   animation-name: fadeInUpBig;
 }
 
+.grayscale{
+  filter: grayscale(100);
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top:calc(50% - 60px);
+    left:calc(50% - 60px)
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @media(min-width: 1024px){
   li.list-group-item img{
     height: 150px;
@@ -323,5 +423,13 @@ li.list-group-item .footer {
   .informacion {
   	padding: 10px 20px;
   	border-top: 0;
+    width: auto;
+  }
+  .navbar-nav {
+	  margin: 0;
+  }
+  .btn.btn-danger.btn-sm{
+    margin-top: 15px;
+    margin-bottom:15px
   }
 }

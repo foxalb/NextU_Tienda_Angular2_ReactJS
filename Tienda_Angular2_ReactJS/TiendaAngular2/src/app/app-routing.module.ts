@@ -6,11 +6,11 @@ import { CarritoComponent} from './components/carrito/carrito.component'
 import { DetalleProductoComponent} from './components/tienda/detalle-producto/detalle-producto.component'
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'tienda', component: TiendaComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'tienda', component: TiendaComponent},
   { path: 'tienda/detalle-producto/:id', component: DetalleProductoComponent},
-  { path: 'carrito', component: CarritoComponent, pathMatch: 'full'},
-  { path: '', pathMatch: 'full', redirectTo: 'login' }
+  { path: 'carrito', component: CarritoComponent},
+  { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 @NgModule({
