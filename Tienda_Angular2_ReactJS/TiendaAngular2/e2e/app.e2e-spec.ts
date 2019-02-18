@@ -1,4 +1,4 @@
-import { TiendaAngular2Page } from './app.po';
+import { TiendaAngular2Page } from './app.po'; 
 
 describe('tienda-angular2 App', function() {
   let page: TiendaAngular2Page;
@@ -11,5 +11,4 @@ describe('tienda-angular2 App', function() {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('app works!');
   });
-}); 
-
+});

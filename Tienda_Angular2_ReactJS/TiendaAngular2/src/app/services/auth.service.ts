@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router'; //Inyectar el componente router para manejar redirecciones URL
 
@@ -20,7 +20,7 @@ export class AuthService {
     .map((response : Response) => {
 
       return response.json()
-    }) 
+    })
   }
 
   logout(){
@@ -28,8 +28,10 @@ export class AuthService {
     this.router.navigate(['login'])
   }
 
-    checkSession(){
-    console.log(sessionStorage.getItem("Session"))
+  checkSession(){
+    if(sessionStorage.getItem("Session")){
+      console.log("Bienvenido "+sessionStorage.getItem("Session"))
+    }
     return sessionStorage.getItem("Session"); //Verificar si hay una sesión iniciada
   }
 

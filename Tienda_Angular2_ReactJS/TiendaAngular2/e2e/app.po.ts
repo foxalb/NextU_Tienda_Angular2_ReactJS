@@ -5,8 +5,7 @@ export class TiendaAngular2Page {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  getParagraphText() { 
     return element(by.css('app-root h1')).getText();
   }
-} 
-
+}

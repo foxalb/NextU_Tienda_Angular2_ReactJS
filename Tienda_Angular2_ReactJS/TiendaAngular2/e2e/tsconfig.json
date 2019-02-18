@@ -9,9 +9,8 @@
     "outDir": "../dist/out-tsc-e2e",
     "sourceMap": true,
     "target": "es5",
-    "typeRoots": [
+    "typeRoots": [ 
       "../node_modules/@types"
     ]
   }
-} 
-
+}
