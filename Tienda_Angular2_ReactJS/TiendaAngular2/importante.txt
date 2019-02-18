@@ -1,0 +1,33 @@
+Installing & configuring angular2-materialize in projects created with the Angular CLI
+
+Install MaterializeCSS and angular2-materialize from npm
+
+npm install materialize-css --save
+npm install angular2-materialize --save
+
+jQuery 2.2 and Hammer.JS are required
+
+npm install jquery@^2.2.4 --save 
+npm install hammerjs --save
+
+Edit the angular-cli.json :
+
+    Go to section apps and find styles array inside it (with only styles.css value by default), add the following line inside array before any styles:
+
+  "../node_modules/materialize-css/dist/css/materialize.css"
+
+    Go to section apps and find scripts array inside it, and add the following lines inside array
+
+  "../node_modules/jquery/dist/jquery.js",
+  "../node_modules/hammerjs/hammer.js",
+  "../node_modules/materialize-css/dist/js/materialize.js"
+
+Add to the top of app.module.ts
+
+import { MaterializeModule } from 'angular2-materialize';
+
+Add MaterializeModule inside imports array of @NgModule decorator in app.module.ts
+
+Add this line to header of index.html
+
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
