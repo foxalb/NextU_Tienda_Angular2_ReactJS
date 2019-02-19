@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import * as firebase from 'firebase';
 import update from 'immutability-helper'; //Manejo de arrays
+import BarraNavegacion from './BarraNavegacion.jsx';
 
 class Catalogo extends React.Component { 
 
@@ -8,22 +10,26 @@ class Catalogo extends React.Component {
 //                    Component Will Mount
 //------------------------------------------------------------------------------
   componentWillMount(){
-    this.setState({loader:true});
-   }
+    this.checkCarrito(this.props.id);
+  }
 //===============================================================================
 //                    Constructor
 //------------------------------------------------------------------------------
   constructor(props) {
     super(props);
-    this.state = { //Inicializar variables
+    this.state = { //Inicializar los estados de las variables
       inputValue : 1,
+      disponible : this.props.disponible,
+      contadorCarrito : 0,
       listaProductos: [],
-      listaCarrito: [],
-      loader : true
+      listaCarrito: JSON.parse(sessionStorage.getItem('Carrito')) ? JSON.parse(sessionStorage.getItem('Carrito')) : [] ,
+      productoCarrito : {
+          id : '',
+          descripcion : '',
+          imagen : '',
+          cantidad : '',
+        },
     };
-
-    this.agregarProducto = this.agregarProducto.bind(this);
-    //this.btnTapped = this.btnTapped.bind(this);
   }
 //==============================================================================
 //                    Render
@@ -37,13 +43,13 @@ class Catalogo extends React.Component {
               <span className="card-title  text-shadow">{this.props.descripcion}</span>
              </div>
             <div className="card-content">
-              <div className="informacion">
-                <span className="badge carrito"><small className="white-text text-shadow"><i className="material-icons">shopping_cart</i> <p>!-this.obtenerCantidad(this.props.id)-!</p></small></span>
+              <div className="informacion blue-grey-text text-darken-2">
+                <span hidden={this.state.contadorCarrito ? false : true}className="badge carrito"><Link to="/carrito"><small className="white-text text-shadow"><i className="material-icons left">shopping_cart</i> <p className="left  ">{this.state.contadorCarrito}</p></small></Link></span>
                 <p><b>Precio: </b>{this.props.precio}</p>
-                <p><b>Disponibles: </b>{this.props.disponible ? this.props.disponible : 'Agotado'}</p>
+                <p><b>Disponibles: </b>{this.state.disponible ? this.state.disponible : 'Agotado'}</p>
                 <div className="input-group" >
                   <div className="file-field input-field">
-                      <button  onClick={this.agregarProducto} className="btn input waves-effect waves-light" type="button" disabled={ (this.props.disponible <= 0) ? true : false } > <i className="material-icons">add_shopping_cart</i></button>
+                      <button  onClick={this.agregarProducto.bind(this)} className="btn input waves-effect waves-light" type="button" disabled={ (this.props.disponible <= 0) ? true : false } > <i className="material-icons">add_shopping_cart</i></button>
                     <div className="file-path-wrapper">
                       <input type="number" value={this.state.inputValue} disabled={ (this.props.disponible <= 0 ) ? true : false } min="0" max={this.props.disponible} className="form-control right-align" onChange={evt => this.updateInputValue(evt)}></input>
                     </div>
@@ -56,105 +62,51 @@ class Catalogo extends React.Component {
         </div>
     )
   }
-//======================EventListener para campo de busqueda====================
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    });
-  }
-//==============================================================================
-  componentWillMount(){
-    this.setState({loader:false});
-  }
+
 
 //==============================================================================
 //                    Funciones
 //------------------------------------------------------------------------------
 //--------------------Agregar Productos-----------------------------------------
   agregarProducto(){
-     let producto = this.props;
      let cantidad = this.state.inputValue
-     if(producto.disponible < cantidad){
-       alert('Máxima existencia es: '+ producto.disponible);    //Mostrar un mensaje de alerta con la cantidad maxima disponible
+     if (cantidad <=0) {
+      alert('Seleccione una cantidad válida');
+      return
+     }
+     if(this.state.disponible < cantidad){
+       alert('Máxima existencia es: '+ this.state.disponible);    //Mostrar un mensaje de alerta con la cantidad maxima disponible
      }else{
-       alert("agregando "+cantida)
+       let disponibles = (Number(this.state.disponible) - Number(cantidad));
+       let agregarACarrito = (Number(this.state.contadorCarrito) + Number(cantidad));
+       this.setState({disponible : disponibles});
+       this.setState({contadorCarrito : agregarACarrito});
+       this.state.productoCarrito.id =  this.props.id;
+       this.state.productoCarrito.descripcion =  this.props.descripcion;
+       this.state.productoCarrito.imagen =  this.props.imagen;
+       this.state.productoCarrito.precio =  this.props.precio;
+       this.state.productoCarrito.cantidad = (Number(this.state.productoCarrito.cantidad) +  Number(cantidad));
+       this.props.actualizarDisponible(this.state.productoCarrito, cantidad, false);
      }
   }
 //------------------------------------------------------------------------------
-  componentDidMount(){
-    //console.log(this.props)
-    //console.log('Aplicacion iniciada')
+//======================EventListener para campo de cantidades====================
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value
+    });
   }
+//---------------------Verificar carrito----------------------------------------
+  checkCarrito(id){
+    let productoCarrito = this.props
+    for(let itemCarrito of this.state.listaCarrito){ //Recorrer el arreglo de productos almacenados en el carrito
+      if(itemCarrito.id == productoCarrito.id){
+        let actualizarDisponible = (Number(this.state.disponible) - Number(itemCarrito.cantidad));
+        this.setState({disponible : actualizarDisponible, contadorCarrito : itemCarrito.cantidad});
+      }
+      //(itemCarrito.id, itemCarrito.cantidad); //Actualizar las cantidades de los productos a agregar en el carrito
+    }
+  }
+//------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-  //************************Revisar**********************
-  btnTapped() {
-    /*console.log(this.props)
-    let cantidad = 0;
-    this.state.listaCarrito = update(this.state.listaCarrito, {$push: [{id: this.props.id, cantidad: this.state.inputValue}]})
-    let producto = this.state.listaCarrito;
-    this.state.listaCarrito.forEach(function(item, index){
-       cantidad = Number(cantidad) + Number(item.cantidad)
-    })
-    //this.actualizarDisponible(this.props)
-    //console.log(this.state.listaCarrito)*/
-    this.verificarCarrito(this.props)
- }
-
- //===Verificar existencia en el carrito para evitar items duplicados============
-   verificarCarrito(item){
-     if(this.guardarCarrito(item) == false){ //Verificar que el item enviado como parámetro no exista previamente en el arreglo de objetos de productos
-       this.state.listaCarrito = update(this.state.listaCarrito, {$push: [{id: this.props.id, cantidad: this.state.inputValue}]}) //Si no existe agregarlo al arreglo
-       console.log('Agregando Producto')
-     }
-     //sessionStorage.setItem("Carrito", JSON.stringify(this.listaCarrito)); //Actualizar la sesion Carrito con los nuevos valores del arreglo en formato string
-   }
-
-   //=============Guardar Items en el carrito======================================
-     guardarCarrito(item){
-       if(this.state.listaCarrito.length > 0){ //Verificar que el carrito contenga informacion
-         for(let itemGuardado of this.state.listaCarrito){ //Recorrer el arreglo de productos actuales en el carrito
-           if(itemGuardado.id == item.id){ //Verificar que el producto en el carrito coincida con el id del producto enviado como parámetro
-             itemGuardado.cantidad = Number(itemGuardado.cantidad) + Number(item.cantidad) //Aumentar la cantidad del producto en el carrito
-             return true //Devolver verdadero si el producto existia en el carrito
-           }
-         }
-         return false; //Devolver falso si el producto no existia en el carrito
-       }
-       return false; //Devolver falso si el producto no existia en el carrito
-     }
-
-
- verificarCarrito(item){
-   if(this.guardarCarrito(item) == false){ //Verificar que el item enviado como parámetro no exista previamente en el arreglo de objetos de productos
-     this.state.listaCarrito.push(item) //Si no existe agregarlo al arreglo
-   }
-   sessionStorage.setItem("Carrito", JSON.stringify(this.state.listaCarrito)); //Actualizar la sesion Carrito con los nuevos valores del arreglo en formato string
- }
-
-  /*actualizarDisponible(item, cantidad){
-    let disponible = Number(this.props.disponible) - Number(cantidad)
-    console.log('Disponible: '+disponible)
-    this.props.actualizarVistaDisponible(cantidad)
-    this.props.actualizarCarrito(this.props.id, cantidad)
-
-  }*/
-}
-
-export default Catalogo
-/*return <EmpleadoRow id={ key }
-                    nombre={ this.props.nombre }
-                    descripcion={ this.props.descripcion }
-                    imagen={ this.props.imagen }
-                    disponible={ this.props.disponible } />
-              //<EmpleadoAvatar picture={this.props.picture} />*/
+}export default Catalogo

@@ -1,9 +1,9 @@
 import React from 'react';
 
-class BarraNavegacion extends React.Component{
+class BarraNavegacion extends React.Component{ 
   constructor(){
     super()
-    this.state = { 
+    this.state = {
 
       }
     }

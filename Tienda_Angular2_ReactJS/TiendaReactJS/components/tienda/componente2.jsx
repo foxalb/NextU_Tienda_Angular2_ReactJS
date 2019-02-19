@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Redirect, browserHistory, IndexRoute } from 'react-router-dom'
-import Tienda from '../Tienda.jsx';
+//import Tienda from '../Tienda.jsx';
 import Producto from './Producto.jsx';
 import Carrito from './Carrito.jsx';
 import LoginForm from '../Login.jsx';
-import BarraNavegacion from './BarraNavegacion.jsx'
+import BarraNavegacion from './BarraNavegacion.jsx' 
 
 
 class componente2 extends React.Component{
@@ -18,7 +18,7 @@ class componente2 extends React.Component{
                   <button onClick={this.props.cambiarEstado}>Cambiar mensaje</button>
                 </div>
             </div>
-      </div> 
+      </div>
             );
         }
       }
