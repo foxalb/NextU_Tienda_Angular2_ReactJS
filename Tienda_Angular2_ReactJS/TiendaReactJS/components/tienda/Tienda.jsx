@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase'; 
+//=========Importar Componentes=========================
 import BarraNavegacion from './BarraNavegacion.jsx';
-//import CatalogoRow from './CatalogoRow.jsx';
-import Catalogo from './Catalogo.jsx'; 
-
+import Catalogo from './Catalogo.jsx';
+//======================================================
 
 class Tienda extends React.Component{
   constructor(props) {
@@ -13,12 +13,12 @@ class Tienda extends React.Component{
       catalogo: [],
       productos: [],
       listaCarrito : [],
+      loader : true
     }
     this.actualizarDisponible = this.actualizarDisponible.bind(this)
   }
   //==================Component Will Mount========================================
   componentWillMount(){
-    //if(this.state.catalogo == ""){                                                   //Verificar si se ha cargado previamente la información del catálogo
       const listaProductos = []                                                 //Arreglo temporal de objetos para almacenar todos los productos
       firebase.database().ref("productos").once("value").then((snapshot) => {
         snapshot.forEach(function(childSnapshot) {
@@ -29,7 +29,6 @@ class Tienda extends React.Component{
         this.setState({catalogo : listaProductos });
         this.setState({productos : this.state.catalogo});
       })
-    //}
   }
   //==============================================================================
   //                    Render
@@ -64,7 +63,7 @@ class Tienda extends React.Component{
   //                    Funciones
   //------------------------------------------------------------------------------
   mostrarProductos(){
-    return this.state.productos.map(
+    return this.state.productos.map(                                            //Recorrer el arreglo de productos y devolver como respuesta la infirmación de cada uno
       (producto) => { return <Catalogo actualizarDisponible={this.actualizarDisponible} productos={this.state.productos} key={ producto.id } id={producto.id}  nombre={ producto.nombre } imagen={ producto.imagen } descripcion={ producto.descripcion } disponible={ producto.disponible } precio ={producto.precio} /> }
     )
   }
@@ -81,8 +80,8 @@ class Tienda extends React.Component{
       if(nombre.includes( palabraFiltro )){                 //Verificar que algún item del catálogo contenga los caracteres especificados en el campo de búsqueda
         itemMatch.push(item)}                               //Agregar el producto coincidente al arreglo
       }
-      this.setState({productos : itemMatch});
-      if(itemMatch.length == 0){
+      this.setState({productos : itemMatch});              //Actualizar el estado de listado de productos a los productos que tengasn alguna coincidencia con el campo de filtro
+      if(itemMatch.length == 0){                           //Si la cantidad de objetos en el estado de la variable producto es 0 devolver un arreglo vacío
         this.state.productos = []
       }
     }
@@ -90,12 +89,12 @@ class Tienda extends React.Component{
     //             Guardar Items en el carrito
     //--------------Actualizar Disponible------------------------------------------
     actualizarDisponible(item, cantidad){
-      for (let productoLista of this.state.productos){
-        if (productoLista.id == item.id){
-          this.verificarCarrito(item, cantidad)
-          productoLista.disponible = (Number(productoLista.disponible) - Number(cantidad))
-          this.setState({productos : this.state.productos})
-          this.setState({listaCarrito : this.state.listaCarrito})
+      for (let productoLista of this.state.productos){                                      //Recorrer el arreglo de productos obenidos de la base de datos
+        if (productoLista.id == item.id){                                                   //Buscar la coincidencia del producto actual con el de la base de datos
+          this.verificarCarrito(item, cantidad)                                             //Ejecutar la función verificar carrito enviando como parámetros el item y la cantidad
+          productoLista.disponible = (Number(productoLista.disponible) - Number(cantidad))  //Actualizar la disponibilidad del producto actual con el resultado de la sustracción de la disponibilidad actual con la cantidad
+          this.setState({productos : this.state.productos})                                 //Actualizar el estado de la variable producto con el resultado anterior
+          this.setState({listaCarrito : this.state.listaCarrito})                           //Actualizar la variable lista carrito con el nuevo estado de la variable listaCarrito
         }
       }
     }

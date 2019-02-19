@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda version ReactJS</title>
+  <link rel="stylesheet" href="./assets/css/materialize.min.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Neucha" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<style media="screen">
+  body{
+    overflow: auto;
+  }
+  .card-content ol li{
+    margin-bottom:10px
+  }
+  a{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .img-responsive {
+  	display: block;
+  	max-width: 100%;
+  }
+  .collapsible-header > p{
+    margin: 0
+  }
+</style>
+
+
+  <div class="container">
+    <ul class="collapsible blue-grey lighten-5" data-collapsible="accordion">
+      <h5 class="center-align" style="margin-top:5%">
+        <img src="../dist/img/react.jpg" style="max-height:200px">
+      </h5>
+
+      <li>
+        <div class="collapsible-header active">1. Crear un directorio raiz de proyecto <i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+          <span>
+            <ol>
+              <ol>
+                <li type="i">
+                  <p>Crear una carpeta donde se alojará el proyecto en la raíz del disco duro: <br/><b>C:\TiendaVirtual\TiendaReactJS</b></p>
+                  <a href="./dist/img/carpetaproyecto.png"><img class="img-responsive" src="./dist/img/carpetaproyecto.png"></a>
+                </li>
+
+                <li type="i">
+                  <p>Desde la consola de comandos, navegar hasta la ruta donde se creará el proyecto. Para este ejemplo se creará el directorio raíz del proyecto en la raíz del disco duro: <br/><b>C:\TiendaVirtual\TiendaReactJS</b></p>
+                  <a href="./dist/img/directorioraiz.png"><img class="img-responsive" src="./dist/img/directorioraiz.png"></a>
+                </li>
+              </ol>
+            </ol>
+          </span>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">2. Instalar componentes necesarios para iniciar el proyecto <i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4" style="display: block;">
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header"><p><i class="material-icons">settings</i> 2.1 Instalar babel de manera global en el equipo <i class="material-icons">arrow_drop_down</i></p></div>
+              <div class="collapsible-body blue-grey lighten-5">
+                <p>
+                  Desde la cónsola de comandos ejecutar el comando <code>npm install -g babel</code>
+                <p>
+              </div>
+            </li>
+
+            <li>
+              <div class="collapsible-header"><p><i class="material-icons">settings</i> 2.2 Instalar el cliente babel de manera global en el equipo <i class="material-icons">arrow_drop_down</i></p></div>
+              <div class="collapsible-body blue-grey lighten-5">
+                <p>
+                  Desde la cónsola de comandos ejecutar el comando <code>npm install -g babel-cli</code>
+                <p>
+              </div>
+            </li>
+
+            <li>
+              <div class="collapsible-header"><p><i class="material-icons">play_arrow</i> 2.3 Iniciar un nuevo proyecto con npm init <i class="material-icons">arrow_drop_down</i></p></div>
+              <div class="collapsible-body blue-grey lighten-5">
+                <p>
+                  Desde la cónsola de comandos ejecutar el comando <code>npm init</code> y completar el asistente
+                <p>
+                  <a href="./dist/img/npminit.png"><img class="img-responsive" src="./dist/img/npminit.png"></a>
+              </div>
+            </li>
+        </ul>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">3. Instalar los paquetes de ReactJS <i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>3.1 Ejetucar los siguientes comandos desde la consola de comandos<i class="material-icons">arrow_drop_down</i></p></div>
+                <div class="collapsible-body blue-grey lighten-5">
+                  <ol>
+                      <li type="a">npm install webpack --save</li>
+                      <li type="a">npm install webpack-dev-server --save</li>
+                      <li type="a">npm install react --save</li>
+                      <li type="a">npm install react-dom --save</li>
+                      <li type="a">npm install babel-core</li>
+                      <li type="a">npm install babel-loader </li>
+                      <li type="a">npm install babel-preset-react</li>
+                      <li type="a">npm install babel-preset-es2015</li>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+            </ul>
+        </div>
+      </li>
+
+      <li>
+        <div class="collapsible-header">4. Iniciar proyecto TiendaReactJS<i class="material-icons">arrow_drop_down</i></div>
+        <div class="collapsible-body blue-grey lighten-4">
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">content_copy</i>4.1 Copiar el contenido de la carpeta <b>TiendaReactJS</b> dentro de la carpeta <b>C:\TiendaVirtual\TiendaReactJS</b></p></div>
+              </li>
+
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>4.2 Ejecutar el comando <code> npm install </code> para instalar los módulos dependientes de la aplicación contenidos en el archivo packaje.json</p></div>
+              </li>
+
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">play_arrow</i>4.3 Ejecutar el comando <code> npm start </code> para iniciar el servidor del proyecto ReactJS<i class="material-icons">arrow_drop_down</i></p></div>
+                <div class="collapsible-body blue-grey lighten-5">
+                  <ol>
+                      <li type="i"<a href="./dist/img/npmstart.png"><img class="img-responsive" src="./dist/img/npmstart.png"></a></li>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+              <li>
+                <div class="collapsible-header"><p><i class="material-icons">webpack</i>4.4 Abrir el proyexto en el navegador<i class="material-icons">arrow_drop_down</i></p></div>
+                <div class="collapsible-body blue-grey lighten-5">
+                  <ol>
+                      <li type="i">Abrir en el explorador de tu preferencia la dirección web: <a href="http://localhost:8080">http://localhost:8080</a>, donde 8080 es el puerto asignado por defecto en la aplcación </li>
+                      <a href="./dist/img/login.png"><img class="img-responsive" src="./dist/img/login.png"></a>
+                      <li type="i"><p>Iniciar sesión utilizando la siguiente información:</p><p> email: <b>luis@email.com</b></p>contraseña: <b>12345</b>
+                          <a href="./dist/img/tienda.png"><img class="img-responsive" src="./dist/img/tienda.png"></a>
+                      </li>
+                    </li>
+                  </ol>
+                </div>
+              </li>
+
+
+            </ul>
+        </div>
+      </li>
+    </ul>
+    <p class="center-align">
+      Luis José Márquez González
+    </p>
+  </div>
+<script type="text/javascript" src="./assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./assets/js/materialize.min.js"></script>
+</div>
+</body>
+</html>

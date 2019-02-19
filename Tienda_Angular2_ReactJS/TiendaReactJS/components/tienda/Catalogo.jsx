@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import * as firebase from 'firebase';
+import { FormattedMessage } from 'react-intl';
 import update from 'immutability-helper'; //Manejo de arrays
-import BarraNavegacion from './BarraNavegacion.jsx';
+import BarraNavegacion from './BarraNavegacion.jsx'; 
 
-class Catalogo extends React.Component { 
+class Catalogo extends React.Component {
 
 //==============================================================================
 //                    Component Will Mount
@@ -38,14 +39,14 @@ class Catalogo extends React.Component {
     return (
         <div className="col s12 m4 l3 animated fadeIn fast">
           <div className="card">
-            <div className="card-image">
-              <img src={this.props.imagen}/>
+            <div className={this.state.disponible ? 'card-image' : 'card-image grayscale'}>
+              <img src={this.props.imagen} />
               <span className="card-title  text-shadow">{this.props.descripcion}</span>
              </div>
             <div className="card-content">
               <div className="informacion blue-grey-text text-darken-2">
                 <span hidden={this.state.contadorCarrito ? false : true}className="badge carrito"><Link to="/carrito"><small className="white-text text-shadow"><i className="material-icons left">shopping_cart</i> <p className="left  ">{this.state.contadorCarrito}</p></small></Link></span>
-                <p><b>Precio: </b>{this.props.precio}</p>
+                <p><b>Precio: </b><FormattedMessage   id="precio"  defaultMessage={`$ {precio, number}`} values={{precio : this.props.precio}}  /></p>
                 <p><b>Disponibles: </b>{this.state.disponible ? this.state.disponible : 'Agotado'}</p>
                 <div className="input-group" >
                   <div className="file-field input-field">

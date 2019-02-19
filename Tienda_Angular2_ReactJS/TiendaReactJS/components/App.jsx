@@ -5,12 +5,12 @@ import * as firebase from 'firebase';
 import {IntlProvider, FormattedMessage} from 'react-intl';
 
 import BarraNavegacion from './tienda/BarraNavegacion.jsx';
-import Carrito from './tienda/Carrito.jsx'; 
+import Carrito from './tienda/Carrito.jsx';
 import Tienda from './tienda/Tienda.jsx';
 import Catalogo from './tienda/Catalogo.jsx';
 import Producto from './tienda/Producto.jsx';
 
-class App extends React.Component{
+class App extends React.Component{ 
   constructor(props) {
     super(props)
     this.state = {

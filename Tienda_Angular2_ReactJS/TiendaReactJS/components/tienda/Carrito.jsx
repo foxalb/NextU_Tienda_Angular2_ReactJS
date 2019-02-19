@@ -16,6 +16,7 @@ class Carrito extends React.Component{
       inputValue:0,
       redirect : false,
       counter : 1,
+      pagar : false
     }
     this.vaciarCarrito = this.vaciarCarrito.bind(this)
   }
@@ -67,16 +68,14 @@ class Carrito extends React.Component{
             <BarraNavegacion contador={this.contadorCarrito()}/>
             <div className="animated fadeIn slow">
               <div className="box white col s12 center-align" style={{padding: '5%'}}>
-                <h5  style={{height : '70vh', display : 'table-cell', verticalAlign : 'middle', maxWidth: '800px'}} >No ha agregado productos al carrito de compras. Lo invitamos a dar un paseo por nuestra <Link to="/tienda">Tienda Virtual</Link></h5>
+                <h5  style={{height : '70vh', display : 'table-cell', verticalAlign : 'middle'}} >No ha agregado productos al carrito de compras. Lo invitamos a dar un paseo por nuestra <Link to="/tienda">Tienda Virtual</Link></h5>
               </div>
             </div>
           </div>
         </div>
       )
     }else{
-      request
-      .get('https://tienda-angular2.firebaseio.com/productos/.json') //Realizar una consulta a la base de datos
-      return <Redirect to="/tienda"/>;
+      return <Redirect to="/tienda"/>; //Redireccionar a la tienda
     }
   }
   //==============================================================================
@@ -137,6 +136,7 @@ class Carrito extends React.Component{
   //=============Pagar Carrito==================================================
   pagarCarrito(){
     const listaCarrito = this.state.listaCarrito                                   //Definir la constante lista carrito
+    this.setState({ pagar : true})
     request
     .get('https://tienda-angular2.firebaseio.com/productos/.json')                //Realizar una consulta a la base de datos
     .then((res) => {
@@ -162,28 +162,34 @@ class Carrito extends React.Component{
 }
 
 actualizarDB(itemCatalogo, cantidad){
-  request.put(`https://tienda-angular2.firebaseio.com/productos/${itemCatalogo.id}.json`)
-  .set('Content-Type', 'application/json')
-  .send(itemCatalogo)
-  .then((res) => {
-    if( res.error || !res.ok){
+  request.put(`https://tienda-angular2.firebaseio.com/productos/${itemCatalogo.id}.json`)  //Realizar consulta a base de datos
+  .set('Content-Type', 'application/json')                                                 //Especificar el tipo de datos
+  .send(itemCatalogo)                                                                      //Enviar el producto como parámetro
+  .then((res) => {                                                                         //Manejar la respuesta del servidor
+    if( res.error || !res.ok){                                                             //Si ocurre un erro
       console.log('Se produjo un error al actualizar la base de datos. '+error );
-      alert('Se produjo un error al actualizar la base de datos. '+error)
+      alert('Se produjo un error al actualizar la base de datos. '+error)                  //Mostrar alerta
     }else{
-      let counter = (Number(this.state.counter) + 1)
-      if(counter == this.state.listaCarrito.length){
+      if(this.state.listaCarrito.length == 1){                                             //Si la cantidad de items en el carrito es 1, vaciar el carrito y actualizar la variable redirect a true
         this.vaciarCarrito()
         this.setState({ redirect : true })
       }else{
-        this.setState({ counter : counter})
+        let counter = (Number(this.state.counter) + 1)                                     //Si no, Crear una variable contador
+        if(counter == this.state.listaCarrito.length){                                     //Cuando la variable contador sea igual al número de productos en el carrito (se haya recorrido el arreglo)
+          this.vaciarCarrito()                                                               //Vaciar carrito
+          this.setState({ counter : counter})                                                //Actualizar el estado de la variable contador por el contador actual
+          this.setState({ redirect : true })                                                 //Cambiar el estado de redireccion a true
+        }else{
+          this.setState({ counter : counter})                                              //Actualizar el estado de la variable contador por el contador actual
+        }
       }
     }
   })
 }
 
-componentDidUpdate(){
-  console.log('Actualización de disponibilidad correcta.');
-}
+  componentDidUpdate(){
+    console.log('Actualización de disponibilidad correcta.');                               //Mostrar mensaje en consola cada vez que el producto sea actualizado en la base de datos
+  }
 }
 
 export default Carrito;

@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path'); 
 
 
-var config ={ 
+var config ={
   entry:'./main.js',
   output:{
     path: path.resolve(__dirname, './'),

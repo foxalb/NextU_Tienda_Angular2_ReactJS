@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import ReactDOM from 'react-dom';
 import * as firebase from 'firebase';
 
@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
     databaseURL: "https://tienda-angular2.firebaseio.com",
     projectId: "tienda-angular2",
     storageBucket: "tienda-angular2.appspot.com",
-    messagingSenderId: "529996794003"
+    messagingSenderId: "529996794003" 
   };
   firebase.initializeApp(config);
 

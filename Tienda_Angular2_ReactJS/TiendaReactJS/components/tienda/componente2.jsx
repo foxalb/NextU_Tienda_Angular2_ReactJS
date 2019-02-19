@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Link, Redirect, browserHistory, IndexRo
 //import Tienda from '../Tienda.jsx';
 import Producto from './Producto.jsx';
 import Carrito from './Carrito.jsx';
-import LoginForm from '../Login.jsx';
-import BarraNavegacion from './BarraNavegacion.jsx' 
+import LoginForm from '../Login.jsx'; 
+import BarraNavegacion from './BarraNavegacion.jsx'
 
 
 class componente2 extends React.Component{

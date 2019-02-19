@@ -1,10 +1,8 @@
-import React from 'react'; 
-import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom'; 
 import * as firebase from 'firebase';
 import * as request from 'superagent';
-import App from './App.jsx';
 import {  BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
-//import {  BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
 //=========Importar Componentes=========================
 import LoginFirebase from './FirebaseDB.jsx';
 //========================================================
@@ -79,7 +77,7 @@ class LoginForm extends React.Component{
               <h4 className="text-center white-text">Inicia Sesión</h4>
               <div className="col s12 input-field">
                 <input type="email" ref="email" id="email" value={this.state.email} onChange={this.handleChange} placeholder="luis@email.com" className="validate white-text" required aria-required="true" />
-                <label htmlFor="email" data-error="Error en formato de email. Ejemplo: luis@email.com" data-success="Formato de email correcto">Correo Electrónico</label>
+                <label htmlFor="email" data-error="Error en formato de email. Ejemplo: correo@email.com" data-success="Formato de email correcto">Correo Electrónico</label>
               </div>
               <div className="col s12 input-field">
                 <input type="password" ref="password" id="password" value={this.state.password} onChange={this.handleChange} placeholder="12345" className="validate  white-text" required aria-required="true" />
