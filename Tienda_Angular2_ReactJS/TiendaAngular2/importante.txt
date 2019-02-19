@@ -1,11 +1,11 @@
 Installing & configuring angular2-materialize in projects created with the Angular CLI
 
-Install MaterializeCSS and angular2-materialize from npm 
+Install MaterializeCSS and angular2-materialize from npm
 
 npm install materialize-css --save
 npm install angular2-materialize --save
 
-jQuery 2.2 and Hammer.JS are required
+jQuery 2.2 and Hammer.JS are required 
 
 npm install jquery@^2.2.4 --save
 npm install hammerjs --save
