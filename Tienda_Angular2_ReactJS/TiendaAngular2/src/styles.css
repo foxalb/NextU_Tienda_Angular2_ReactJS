@@ -1,8 +1,6 @@
 @import url('./assets/css/bootstrap.min.css');
-@import url('./assets/css/owl.carousel.min.css');
-@import url('./assets/css/owl.theme.default.min.css'); 
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Poppins');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons'); 
 
 .btn-secondary {
 	border: solid 1px orange;
@@ -136,6 +134,30 @@ form .ng-invalid ~ span.error, form .mensaje {
 	overflow: hidden;
 	position: relative;
 }
+
+.lista-productos::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #802314;
+	border-radius: 10px;
+}
+
+.lista-productos::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #802314;
+}
+
+.lista-productos::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background: #f3f3f3;
+  box-shadow : 0 0 2px black;
+}
+
+.box.carrito {
+	padding:20px;
+}
 .box.carrito {
 	padding:20px;
 }
@@ -202,7 +224,6 @@ form .ng-invalid ~ span.error, form .mensaje {
   -o-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
-
 .flex{
   display:flex;
   flex-wrap: wrap;
@@ -420,7 +441,7 @@ li.list-group-item .footer {
     height: 150px;
     width: auto;
   }
-  .informacion {
+  .carrito .informacion {
   	padding: 10px 20px;
   	border-top: 0;
     width: auto;

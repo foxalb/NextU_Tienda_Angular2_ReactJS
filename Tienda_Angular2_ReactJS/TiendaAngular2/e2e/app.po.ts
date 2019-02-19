@@ -1,6 +1,6 @@
-import { browser, element, by } from 'protractor'; 
+import { browser, element, by } from 'protractor';
 
-export class TiendaAngular2Page {
+export class TiendaAngular2Page { 
   navigateTo() {
     return browser.get('/');
   }

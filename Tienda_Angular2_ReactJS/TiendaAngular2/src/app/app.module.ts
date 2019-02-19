@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser'; 
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //Inyectar los componentes de formularios
 import { HttpModule } from '@angular/http';
@@ -23,7 +23,7 @@ export const firebaseConfig = {
   databaseURL: "https://tienda-angular2.firebaseio.com",
   projectId: "tienda-angular2",
   storageBucket: "tienda-angular2.appspot.com",
-  messagingSenderId: "529996794003"
+  messagingSenderId: "529996794003" 
 };
 
 @NgModule({

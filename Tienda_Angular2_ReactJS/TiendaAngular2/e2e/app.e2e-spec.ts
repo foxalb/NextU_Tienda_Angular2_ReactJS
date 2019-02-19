@@ -1,6 +1,6 @@
-import { TiendaAngular2Page } from './app.po'; 
+import { TiendaAngular2Page } from './app.po';
 
-describe('tienda-angular2 App', function() {
+describe('tienda-angular2 App', function() { 
   let page: TiendaAngular2Page;
 
   beforeEach(() => {

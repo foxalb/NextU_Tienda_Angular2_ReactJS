@@ -2,7 +2,7 @@
   <nav class="navbar">
  <div class="container-fluid">
    <div class="navbar-header">
-     <a class="navbar-brand text-shadow" href="#"><i class="material-icons">shopping_cart</i><p> VirtualStore</p></a>
+     <a [routerLink]="['/tienda']" class="navbar-brand text-shadow"><i class="material-icons">shopping_cart</i><p> VirtualStore</p></a>
    </div>
    <ul class="nav navbar-nav pull-right">
      <li><a [routerLink]="['/tienda']" class="text-shadow active" [ngClass]="{active : (this.url == 'tienda') }"> <i class="material-icons">apps</i></a></li>

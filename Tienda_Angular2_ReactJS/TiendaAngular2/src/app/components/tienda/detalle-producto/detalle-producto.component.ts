@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router'; //incluir el módulo ActivatedRoute para enviar como parámetro el valor de id
 //======================Importar Servicios======================================
 import { AuthService } from "../../../services/auth.service";
@@ -42,7 +42,7 @@ export class DetalleProductoComponent implements OnInit {
           () => {
             this.checkCarrito(); //Verificar si existen productos en el carrito
             this.informacionProducto = this.tiendaService.getDetalleProductos(params['id']); //Obtener el detalle del producto enviando como parámetro el id del producto
-          })
+          }) 
         }
       });
     }
